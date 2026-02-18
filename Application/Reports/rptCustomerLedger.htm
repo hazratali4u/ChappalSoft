@@ -1,0 +1,167 @@
+﻿<div class="col-md-12" style="display: none;">
+    <div id="dvCustomerLedger" class="tablesorter">
+        <style type="text/css">
+            * {
+                box-sizing: border-box;
+            }
+
+            .dvCustomerLedger {
+                padding: 10px 5px;
+                font-family: 'Arial', sans-serif;
+                font-size: 13px;
+                font-weight: bold;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                text-align: left;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+                .dvCustomerLedger h5 {
+                    margin: 5px 0;
+                    font-size: 14px;
+                }
+                .dvCustomerLedger h6 {
+                    margin: 5px 0;
+                    font-size: 12px;
+                }
+
+                .dvCustomerLedger hr {
+                    margin: 0;
+                    border: 1px solid black;
+                }
+
+                .dvCustomerLedger .detail-section {
+                    margin: 5px 0;
+                }
+
+                    .dvCustomerLedger .detail-section table {
+                        width: 100%;
+                    }
+
+                        .dvCustomerLedger .detail-section table tr td {
+                            font-size: 12px;
+                            font-weight: bold;
+                            border: 1px solid black;
+                            padding: 5px;
+                            text-transform: capitalize;
+                        }
+
+                .dvCustomerLedger label {
+                    display: inline;
+                }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                font-weight: bold;
+                line-height: 1.1;
+                color: #000;
+                text-transform: capitalize;
+            }
+
+            @media print {
+                body, html {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .dvCustomerLedger {
+                    padding: 0;
+                    margin-left: 10px; /* <-- ensures left alignment */
+                    margin-right: 10px;
+                    text-align: left;
+                }
+            }
+        </style>
+
+        <div class="dvCustomerLedger">
+            <table>
+                <tr>
+                    <td style="width: 100%;text-align:center;" colspan="2">
+                        <h3><label id="lblHeaderLedger"></label></h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 50%;">
+                        <h5><label id="lblCustomerLedger"></label></h5>
+                    </td>
+                    <td style="width: 50%;text-align:right;">
+                        <h5><label id="lblFromDateLedger"></label></h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 50%;">
+                        
+                    </td>
+                    <td style="width: 50%;text-align:right;">
+                        <h5><label id="lblToDateLedger"></label></h5>
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <table style="border-collapse: collapse; width: 100%;" id="dtCustomerLedger">
+                <thead>
+                    <tr>
+                        <td style="width:15%;border: 1px solid black;">
+                            <h5>Date</h5>
+                        </td>
+                        <td style="width:40%;border: 1px solid black;">
+                            <h5>Remarks</h5>
+                        </td>
+                        <td style="width:15%;border: 1px solid black;">
+                            <h5>Debit</h5>
+                        </td>
+                        <td style="width:15%;border: 1px solid black;">
+                            <h5>Credit</h5>
+                        </td>
+                        <td style="width:15%;border: 1px solid black;">
+                            <h5>Balance</h5>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody id="itemDetailLedger"></tbody>
+                <tr>
+                    <td style="width:15%;border: 1px solid black;text-align:right;">
+                        <h4>Total</h4>
+                    </td>
+                    <td style="width:40%;border: 1px solid black;text-align:right;">
+                    </td>
+                    <td style="width:15%;border: 1px solid black;text-align:right;">
+                        <h4><label id="lblDebitLedger">0</label></h4>
+                    </td>
+                    <td style="width:15%;border: 1px solid black;text-align:right;">
+                        <h4><label id="lblCreditLedger">0</label></h4>
+                    </td>
+                    <td style="width:15%;border: 1px solid black;text-align:right;">
+                        <h4><label id="lblBalanceLedger">0</label></h4>
+                    </td>
+                </tr>     
+            </table>
+            <table style="border-collapse: collapse; width: 100%;" id="dtCustomerBalance">
+                <thead>
+                    <tr>
+                        <td style="width:60%;border: 1px solid black;">
+                            <h5>Customer Name</h5>
+                        </td>
+                        <td style="width:40%;border: 1px solid black;">
+                            <h5>Customer Balance</h5>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody id="itemDetailCustomerBalance"></tbody>
+                <tr>
+                    <td style="width:60%;border: 1px solid black;text-align:right;">
+                        <h4>Total</h4>
+                    </td>
+                    <td style="width:15%;border: 1px solid black;text-align:right;">
+                        <h4><label id="lblBalanceTotal">0</label></h4>
+                    </td>                    
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

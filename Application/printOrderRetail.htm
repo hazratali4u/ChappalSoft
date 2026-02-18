@@ -1,0 +1,185 @@
+﻿<div class="col-md-12" style="display: none;">
+    <div id="dvPrintOrder-Retail" class="tablesorter">
+        <style type="text/css">
+            * {
+                box-sizing: border-box;
+            }
+
+            .dvPrintOrder-Retail {
+                width: 4.2in;
+                padding: 10px 5px;
+                font-family: 'Arial', sans-serif;
+                font-size: 13px;
+                font-weight: bold;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                text-align: left;
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+
+                .dvPrintOrder-Retail h5 {
+                    margin: 5px 0;
+                    font-size: 14px;
+                }
+                .dvPrintOrder-Retail h6 {
+                    margin: 5px 0;
+                    font-size: 12px;
+                }
+
+                .dvPrintOrder-Retail hr {
+                    margin: 0;
+                    border: 1px solid black;
+                }
+
+                .dvPrintOrder-Retail .detail-section {
+                    margin: 5px 0;
+                }
+
+                    .dvPrintOrder-Retail .detail-section table {
+                        width: 100%;
+                    }
+
+                        .dvPrintOrder-Retail .detail-section table tr td {
+                            font-size: 12px;
+                            font-weight: bold;
+                            padding: 5px;
+                            text-transform: capitalize;
+                        }
+
+                .dvPrintOrder-Retail label {
+                    display: inline;
+                }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                font-weight: bold;
+                line-height: 1.1;
+                color: #000;
+                text-transform: capitalize;
+            }
+
+            @media print {
+                body, html {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .dvPrintOrder-Retail {
+                    width: 4.2in !important;
+                    padding: 0;
+                    margin-left: 10px; /* <-- ensures left alignment */
+                    margin-right: 10px;
+                    text-align: left;
+                }
+            }
+        </style>
+        <div class="dvPrintOrder-Retail">
+            <table>
+                <tr>
+                    <td style="width: 30%;">
+                        <h5>
+                            <img src="assets/images/logonew.png" width="100" height="100" alt="Logo" />
+                        </h5>
+                    </td>
+                    <td style="width: 70%;">
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="width:10%;">
+                                    <img src="assets/images/map.png" width="20" height="20" /> 
+                                </td>
+                                <td style="width:90%;">
+                                    <h5><label id="lblAddress-Retail"></label></h5> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:10%;">
+                                    <img src="assets/images/phone.png" width="20" height="20" /> 
+                                </td>
+                                <td style="width:90%;">
+                                    <h5><label id="lblPhone-Retail"></label></h5>
+                                </td>
+                            </tr>                            
+                        </table>                                                
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr id="trDuplicateBillRetail">
+                    <td style="width:100%; text-align:center; border:1px solid black;" colspan="4">
+                        <h5>DUPLICATE BILL</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:45%;">
+                        <h5>INVOICE #</h5>
+                    </td>
+                    <td style="width:5%;"></td>
+                    <td style="width:25%;">
+                        <h5>DATE</h5>
+                    </td>
+                    <td style="width:20%;">
+                        <h5>TIME</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:45%;">
+                        <h5><label id="lblInvocieNo-Retail"></label></h5>
+                    </td>
+                    <td style="width:5%;"></td>
+                    <td style="width:25%;">
+                        <h5><label id="lblDate-Retail"></label></h5>
+                    </td>
+                    <td style="width:20%;">
+                        <h5><label id="lblTime-Retail"></label></h5>
+                    </td>
+                </tr>
+            </table>
+            <div class="detail-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <td style="width:50%;" align="left"><h4>DESCRIPTION</h4></td>
+                            <td style="width:10%;" align="right"><h4>QTY</h4></td>
+                            <td style="width:20%;" align="right"><h4>PRICE</h4></td>
+                            <td style="width:20%;" align="right"><h4>AMOUNT</h4></td>
+                        </tr>
+                    </thead>
+                    <tbody id="orderDetail-Retail"></tbody>
+                    <tr style="height:30px;">
+                        <td colspan="4"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:50%;" align="left"><h4>TOTAL</h4></td>
+                        <td style="width:10%;" align="right"><h4><label id="lblTotalQTY-Retail">0</label></h4></td>
+                        <td style="width:20%;" align="right"></td>
+                        <td style="width:20%;" align="right"><h4> <label id="lblTotalAMOUNT-Retail">0</label> </h4></td>
+                    </tr>                    
+                    <tr id="trDiscount-Retail" style="display:none;">
+                        <td style="width:50%;" align="left"><h4>DISCOUNT</h4></td>
+                        <td style="width:10%;" align="right"></td>
+                        <td style="width:20%;" align="right"></td>
+                        <td style="width:20%;" align="right"><h4> <label id="lblTotalDiscount-Retail">0</label> </h4></td>
+                    </tr>
+                    <tr id="trNetTotal-Retail" style="display:none;">
+                        <td style="width:50%;" align="left"><h4>NET TOTAL</h4></td>
+                        <td style="width:10%;" align="right"></td>
+                        <td style="width:20%;" align="right"></td>
+                        <td style="width:20%;" align="right"><h4> <label id="lblInvoiceNetTotal-Retail">0</label> </h4></td>
+                    </tr>
+                </table>                
+            </div>
+            <table>
+                <tr>
+                    <td style="width: 100%;">
+                        <h5><label id="lblInvoiceFooterNote-Retail"></label></h5>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

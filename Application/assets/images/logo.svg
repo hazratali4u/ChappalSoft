@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="130px" height="45px" viewBox="0 0 130 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Background Rectangle -->
+    <rect width="130" height="45" fill="#423A8E" />
+
+    <!-- Footwear Icon (Chappal/Sandal) -->
+    <path d="M20,25 Q30,15 40,15 T60,25" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+    <path d="M25,30 Q30,20 40,20 T55,30" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Text: Chappal -->
+    <text x="70" y="30" font-family="Arial, sans-serif" font-size="14" fill="#FFFFFF" text-anchor="start">Chappal</text>
+</svg>

@@ -22,8 +22,8 @@ function LoadSticker(dtReport) {
 
     $("#stickerDetail").empty();
     if ($("[id$='ddlColor']").val() == "0") {
-        var row = "";   // for images
-        var row1 = "";  // for names
+        var row = "";
+        var row1 = "";
 
         for (var i = 0; i < dtReport.length; i++) {
             // build one cell for image
@@ -48,11 +48,9 @@ function LoadSticker(dtReport) {
     else {
         for (var i = 0, len = dtReport.length; i < len; i++) {
             var row = $(
-             '<tr><td style="width:25%;border:1px solid black;">' +
+             '<tr><td style="width:50%;border:1px solid black;text-align:center;">' +
                '<img style="width:100px; height:100px;" src="data:image/png;base64,' + dtReport[0].Image + '" />' +
-             '</td><td style="width:25%;border:1px solid black;">' +
-               '<img style="width:100px; height:100px;" src="data:image/png;base64,' + dtReport[0].Image + '" />' +
-               '</td><td style="width:25%;">' +
+             '</td><td style="width:25%;">' +
                '' +
                '</td><td style="width:25%;">' +
                '' +
@@ -61,9 +59,7 @@ function LoadSticker(dtReport) {
             $("#stickerDetail").append(row);
 
             var row1 = $(
-            '<tr><td style="width:25%;border:1px solid black;">' +
-            dtReport[0].ItemName + '-' + dtReport[0].ColorName + '-' + dtReport[0].Size +
-          '</td><td style="width:25%;border:1px solid black;">' +
+            '<tr><td style="width:50%;border:1px solid black;text-align:center;">' +
             dtReport[0].ItemName + '-' + dtReport[0].ColorName + '-' + dtReport[0].Size +
           '</td></tr>'
         );

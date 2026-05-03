@@ -24,6 +24,7 @@
                                     <label for="lblItem">Item</label>
                                     <asp:DropDownList ID="ddlItem" runat="server" CssClass="form-control form-control-lg" Width="100%" Style="text-align: left;">
                                     </asp:DropDownList>
+                                    <asp:HiddenField ID="hfItemIDs" runat="server" Value="" />
                                 </div>
                                 <div class="form-group">
                                     <label for="lblColor">Color</label>

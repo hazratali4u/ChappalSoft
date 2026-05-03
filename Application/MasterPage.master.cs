@@ -162,7 +162,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 ltrlFiles.Text = "<script src='AjazLibrary/BarCodeSticker.js'></script>";
                 break;
             case "BarCode2.aspx":
-                ltrlFiles.Text = "<script src='AjazLibrary/BarCodeSticker2.js'></script>";
+                ltrlFiles.Text = "<script src='AjazLibrary/BarCodeSticker2_1.js'></script>";
                 break;
             case "rptDocument.aspx":
                 ltrlFiles.Text = "<script src='AjazLibrary/ReportDocument.js'></script>";

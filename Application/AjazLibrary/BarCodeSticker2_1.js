@@ -1,4 +1,20 @@
-﻿
+﻿Sys.Application.add_load(function () {
+    $("[id$='ddlCategory']").off('change').on('change', function () {
+        var categoryid = $("[id$='ddlCategory']").val();
+        var lstProducts = $("[id$='hfItemIDs']").val();
+        lstProducts = eval(lstProducts);
+        var $itemDropdown = $("[id$='ddlItem']");
+        $itemDropdown.empty();
+        for (var i = 0, len = lstProducts.length; i < len; ++i) {
+            if (lstProducts[i].CategoryID == categoryid || categoryid == 0) {
+                $itemDropdown.append($('<option>', {
+                    value: lstProducts[i].ItemID,
+                    text: lstProducts[i].Name
+                }));
+            }
+        }
+    });
+});
 function GenerateSticker() {
     var itemID = $("[id$='ddlItem']").val();
     var itemName = $("[id$='ddlItem'] option:selected").text();
@@ -48,8 +64,8 @@ function LoadSticker(dtReport) {
     else {
         for (var i = 0, len = dtReport.length; i < len; i++) {
             var row = $(
-             '<tr><td style="width:50%;border:1px solid black;text-align:center;">' +
-               '<img style="width:100px; height:100px;" src="data:image/png;base64,' + dtReport[0].Image + '" />' +
+             '<tr><td style="width:50%;text-align:center;">' +
+               '<img style="width:95%; height:100px;" src="data:image/png;base64,' + dtReport[0].Image + '" />' +
              '</td><td style="width:25%;">' +
                '' +
                '</td><td style="width:25%;">' +
@@ -57,13 +73,6 @@ function LoadSticker(dtReport) {
              '</td></tr>'
            );
             $("#stickerDetail").append(row);
-
-            var row1 = $(
-            '<tr><td style="width:50%;border:1px solid black;text-align:center;">' +
-            dtReport[0].ItemName + '-' + dtReport[0].ColorName + '-' + dtReport[0].Size +
-          '</td></tr>'
-        );
-            $("#stickerDetail").append(row1);
         }
     }
 

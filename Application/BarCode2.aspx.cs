@@ -45,6 +45,7 @@ public partial class BarCode2 : System.Web.UI.Page
         ddlItem.DataTextField = "Name";
         ddlItem.DataValueField = "ItemID";
         ddlItem.DataBind();
+        hfItemIDs.Value = GetJson(dtItem);
     }
     private void LoadColor()
     {

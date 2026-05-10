@@ -103,7 +103,7 @@ namespace ChappalPrintService
                 DataTable dtSticker = GetPrintingStickers(1);
                 if(dtSticker.Rows.Count > 0)
                 {
-                    WriteLog(string.Format("Order No-{0}- Sticker Started Printing.", dtSticker.Rows[0]["StickerPrintingID"].ToString()), string.Empty);
+                    WriteLog(string.Format("Sticker No-{0}- Started Printing.", dtSticker.Rows[0]["StickerPrintingID"].ToString()), string.Empty);
                     if (PrintSticker(dtSticker, PrinterNameSticker))
                     {
 
@@ -221,7 +221,7 @@ namespace ChappalPrintService
                     {
                         cmd.Connection = con;
                         cmd.CommandTimeout = 120;
-                        cmd.CommandText = "uspGetPrintInvoices";
+                        cmd.CommandText = "uspGetStickerPrinting";
                         cmd.CommandType = CommandType.StoredProcedure;
 
                         IDataParameterCollection pparams = cmd.Parameters;

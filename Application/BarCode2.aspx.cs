@@ -69,85 +69,41 @@ public partial class BarCode2 : System.Web.UI.Page
 
     [WebMethod]
     [ScriptMethod]
-    public static string GenerateSticker(string ItemID,string ItemName,string ColorID,string ColorName,string Size)
+    public static string GenerateSticker(string ItemID, string ItemName, string ColorID, string ColorName, string Size)
     {
-        if (ColorID == "0")
+        BarcodeWriter barcode = new BarcodeWriter();
+        barcode.Format = BarcodeFormat.CODE_128;
+        barcode.Renderer = new BitmapRenderer()
         {
-            DataTable dtColor = (DataTable) HttpContext.Current.Session["dtColor"];
-            BarcodeWriter barcode = new BarcodeWriter();
-            barcode.Format = BarcodeFormat.CODE_128;
-            barcode.Renderer = new BitmapRenderer()
-            {
-                TextFont = new Font("Arial", 11f, FontStyle.Bold)
-            };
+            TextFont = new Font("Arial", 11f, FontStyle.Bold)
+        };
 
-            var qrCodeWriter = new BarcodeWriterPixelData();
-            qrCodeWriter.Options = new QrCodeEncodingOptions
-            {
-                Margin = 0
-            };
-
-            DataTable dtReport = new DataTable();
-            dtReport.Columns.Add("Image", typeof(string));
-            dtReport.Columns.Add("ItemName", typeof(string));
-            dtReport.Columns.Add("ColorName", typeof(string));
-            dtReport.Columns.Add("Size", typeof(string));
-            foreach (DataRow drColor in dtColor.Rows)
-            {
-                if (drColor["ColorID"].ToString() != "0")
-                {
-                    var barcodeInBitmap = barcode.Write(ItemID + ":" + drColor["ColorID"].ToString() + ":" + Size);
-                    var ms = new MemoryStream();
-                    barcodeInBitmap.Save(ms, ImageFormat.Png);
-
-                    var bytearray = ms.ToArray();
-                    var base64Data = Convert.ToBase64String(ms.ToArray());
-                    DataRow dr = dtReport.NewRow();
-                    dr["Image"] = base64Data;
-                    dr["ItemName"] = ItemName;
-                    dr["ColorName"] = drColor["Name"].ToString();
-                    dr["Size"] = Size;
-                    dtReport.Rows.Add(dr);
-                }
-            }
-            return GetJson(dtReport);
-        }
-        else
+        var qrCodeWriter = new BarcodeWriterPixelData();
+        qrCodeWriter.Options = new QrCodeEncodingOptions
         {
-            BarcodeWriter barcode = new BarcodeWriter();
-            barcode.Format = BarcodeFormat.CODE_128;
-            barcode.Renderer = new BitmapRenderer()
-            {
-                TextFont = new Font("Arial", 11f, FontStyle.Bold)
-            };
+            Margin = 0
+        };
 
-            var qrCodeWriter = new BarcodeWriterPixelData();
-            qrCodeWriter.Options = new QrCodeEncodingOptions
-            {
-                Margin = 0
-            };
+        var barcodeInBitmap = barcode.Write(ItemID + ":" + ColorID + ":" + Size);
+        var ms = new MemoryStream();
+        barcodeInBitmap.Save(ms, ImageFormat.Png);
 
-            var barcodeInBitmap = barcode.Write(ItemID + ":" + ColorID + ":" + Size);
-            var ms = new MemoryStream();
-            barcodeInBitmap.Save(ms, ImageFormat.Png);
+        var bytearray = ms.ToArray();
+        var base64Data = Convert.ToBase64String(ms.ToArray());
 
-            var bytearray = ms.ToArray();
-            var base64Data = Convert.ToBase64String(ms.ToArray());
+        DataTable dtReport = new DataTable();
+        dtReport.Columns.Add("Image", typeof(string));
+        dtReport.Columns.Add("ItemName", typeof(string));
+        dtReport.Columns.Add("ColorName", typeof(string));
+        dtReport.Columns.Add("Size", typeof(string));
 
-            DataTable dtReport = new DataTable();
-            dtReport.Columns.Add("Image", typeof(string));
-            dtReport.Columns.Add("ItemName", typeof(string));
-            dtReport.Columns.Add("ColorName", typeof(string));
-            dtReport.Columns.Add("Size", typeof(string));
-
-            DataRow dr = dtReport.NewRow();
-            dr["Image"] = base64Data;
-            dr["ItemName"] = ItemName;
-            dr["ColorName"] = ColorName;
-            dr["Size"] = Size;
-            dtReport.Rows.Add(dr);
-            return GetJson(dtReport);
-        }
+        DataRow dr = dtReport.NewRow();
+        dr["Image"] = base64Data;
+        dr["ItemName"] = ItemName;
+        dr["ColorName"] = ColorName;
+        dr["Size"] = Size;
+        dtReport.Rows.Add(dr);
+        return GetJson(dtReport);
     }
 
     public static string GetJson(DataTable dt)

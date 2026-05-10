@@ -32,12 +32,21 @@ function GenerateSticker() {
         });
 }
 function LoadSticker(dtReport) {
+
     dtReport = JSON.stringify(dtReport);
+
     var result = jQuery.parseJSON(dtReport.replace(/&quot;/g, '"'));
+
     dtReport = eval(result.d);
+
     $("#stickerDetail").empty();
-    var html = '';
-    html += `
+
+    // SINGLE STICKER MODE
+    if ($("[id$='ddlColor']").val() != "0") {
+
+        var html = '';
+
+        html += `
             <tr>
                 <td style="
                     width:2in;
@@ -50,10 +59,21 @@ function LoadSticker(dtReport) {
                     border:0;
                     font-family:Arial;
                 ">
+
+                    <div style="
+                        font-size:9px;
+                        font-weight:bold;
+                        line-height:12px;
+                        white-space:nowrap;
+                        overflow:hidden;
+                    ">
+                        ${dtReport[0].ItemName}
+                    </div>
+
                     <img
                         src="data:image/png;base64,${dtReport[0].Image}"
                         style="
-                            width: 100%;
+                            width:1.4in;
                             height:0.45in;
                             object-fit:contain;
                             display:block;
@@ -62,23 +82,84 @@ function LoadSticker(dtReport) {
                     />
 
                     <div style="
-                        font-size: 12px;
-                        font-weight: bold;
-                        line-height: 14px;
-                        white-space: nowrap;
-                                                overflow: hidden;
-                        text-align: center;
-                        margin-top: 2px;
-                        font-family: Arial, sans-serif;
+                        font-size:8px;
+                        line-height:10px;
+                        white-space:nowrap;
+                        overflow:hidden;
                     ">
-                        ${dtReport[0].ColorName}
+                        ${dtReport[0].ColorName} - ${dtReport[0].Size}
                     </div>
 
                 </td>
             </tr>
         `;
-    $("#stickerDetail").html(html);
+
+        $("#stickerDetail").html(html);
+    }
+
+        // MULTIPLE STICKERS MODE
+    else {
+
+        var html = "";
+
+        for (var i = 0; i < dtReport.length; i++) {
+
+            html += `
+                <tr>
+
+                    <td style="
+                        width:2in;
+                        height:1in;
+                        border:1px solid black;
+                        padding:2px;
+                        text-align:center;
+                        vertical-align:middle;
+                        overflow:hidden;
+                        font-family:Arial;
+                    ">
+
+                        <div style="
+                            font-size:9px;
+                            font-weight:bold;
+                            line-height:12px;
+                            white-space:nowrap;
+                            overflow:hidden;
+                        ">
+                            ${dtReport[i].ItemName}
+                        </div>
+
+                        <img
+                            src="data:image/png;base64,${dtReport[i].Image}"
+                            style="
+                                width:1.4in;
+                                height:0.45in;
+                                object-fit:contain;
+                                display:block;
+                                margin:0 auto;
+                            "
+                        />
+
+                        <div style="
+                            font-size:8px;
+                            line-height:10px;
+                            white-space:nowrap;
+                            overflow:hidden;
+                        ">
+                            ${dtReport[i].ColorName} - ${dtReport[i].Size}
+                        </div>
+
+                    </td>
+
+                </tr>
+            `;
+        }
+
+        $("#stickerDetail").html(html);
+    }
+
+    // PRINT
     setTimeout(function () {
+
         $.print("#dvBarCodeSticker");
 
     }, 500);

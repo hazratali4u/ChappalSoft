@@ -103,9 +103,41 @@ public partial class BarCode2 : System.Web.UI.Page
         dr["ColorName"] = ColorName;
         dr["Size"] = Size;
         dtReport.Rows.Add(dr);
-        return GetJson(dtReport);
+        return "";
     }
 
+    protected void btnGenerate_Click(object sender, EventArgs e)
+    {
+        int ItemID = Convert.ToInt32(ddlItem.SelectedValue);
+        int ColorID = Convert.ToInt32(ddlColor.SelectedValue);
+        int SizeID = Convert.ToInt32(ddlSize.SelectedValue);
+        var oBitmap = Generatecode(ItemID,ColorID,SizeID);
+
+        var ms = new MemoryStream();
+        oBitmap.Save(ms, ImageFormat.Png);
+        var bytearray = ms.ToArray();
+        
+        item.InsertStocker(bytearray,ItemID,ColorID,SizeID,ddlItem.SelectedItem.Text);
+
+    }
+    private Bitmap Generatecode(int ItemID,int ColorID,int SizeID)
+    {
+        
+        BarcodeWriter barcode = new BarcodeWriter();
+        barcode.Format = BarcodeFormat.CODE_128;
+        barcode.Renderer = new BitmapRenderer()
+        {
+            TextFont = new Font("Arial", 11f, FontStyle.Bold)
+        };
+        var qrCodeWriter = new BarcodeWriterPixelData();
+        qrCodeWriter.Options = new QrCodeEncodingOptions
+        {
+            Margin = 0
+        };
+        var barcodeInBitmap = barcode.Write(ItemID + ":" + ColorID + ":" + SizeID);
+
+        return barcodeInBitmap;
+    }
     public static string GetJson(DataTable dt)
     {
         System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();

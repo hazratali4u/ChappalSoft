@@ -36,5 +36,17 @@ namespace ChappalBLL
             };
             return dbHelper.ExecuteNonQuery("uspInsertUpdateItem", parameters);
         }
+
+        public int InsertStocker(byte [] BarCodeImage, int ItemID, int ColorID, int SizeID,string ColorName)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@BarCodeImage", BarCodeImage),
+                new SqlParameter("@ItemID",ItemID),
+                new SqlParameter("@ColorID", ColorID),
+                new SqlParameter("@SizeID", SizeID),
+                new SqlParameter("@ColorName",ColorName)
+            };
+            return dbHelper.ExecuteNonQuery("uspInsertStickerPrinting ", parameters);
+        }
     }
 }

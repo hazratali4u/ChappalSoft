@@ -33,60 +33,60 @@ function GenerateSticker() {
 }
 function LoadSticker(dtReport) {
 
-    dtReport = JSON.stringify(dtReport);
+    //dtReport = JSON.stringify(dtReport);
 
-    var result = jQuery.parseJSON(dtReport.replace(/&quot;/g, '"'));
+    //var result = jQuery.parseJSON(dtReport.replace(/&quot;/g, '"'));
 
-    dtReport = eval(result.d);
+    //dtReport = eval(result.d);
 
-    $("#stickerDetail").empty();
+    //$("#stickerDetail").empty();
 
     
-        var html = '';
+    //    var html = '';
 
-        html += `
-            <tr>
-                <td style="
-                    width:2in;
-                    height:1in;
-                    padding:0;
-                    margin:0;
-                    text-align:center;
-                    vertical-align:middle;
-                    overflow:hidden;
-                    border:0;
-                    font-family:Arial;
-                ">
-                    <img
-                        src="data:image/png;base64,${dtReport[0].Image}"
-                        style="
-                            width:1.4in;
-                            height:0.55in;
-                            object-fit:contain;
-                            display:block;
-                            margin:0 auto;
-                        "
-                    />
+    //    html += `
+    //        <tr>
+    //            <td style="
+    //                width:2in;
+    //                height:1in;
+    //                padding:0;
+    //                margin:0;
+    //                text-align:center;
+    //                vertical-align:middle;
+    //                overflow:hidden;
+    //                border:0;
+    //                font-family:Arial;
+    //            ">
+    //                <img
+    //                    src="data:image/png;base64,${dtReport[0].Image}"
+    //                    style="
+    //                        width:1.4in;
+    //                        height:0.55in;
+    //                        object-fit:contain;
+    //                        display:block;
+    //                        margin:0 auto;
+    //                    "
+    //                />
 
-                    <div style="
-                        font-size:8px;
-                        line-height:10px;
-                        white-space:nowrap;
-                        overflow:hidden;
-                    ">
-                        ${dtReport[0].ColorName} - ${dtReport[0].Size}
-                    </div>
+    //                <div style="
+    //                    font-size:8px;
+    //                    line-height:10px;
+    //                    white-space:nowrap;
+    //                    overflow:hidden;
+    //                ">
+    //                    ${dtReport[0].ColorName} - ${dtReport[0].Size}
+    //                </div>
 
-                </td>
-            </tr>
-        `;
+    //            </td>
+    //        </tr>
+    //    `;
 
-        $("#stickerDetail").html(html);
+    //    $("#stickerDetail").html(html);
     
-    // PRINT
-    setTimeout(function () {
+    //// PRINT
+    //setTimeout(function () {
 
-        $.print("#dvBarCodeSticker");
+    //    $.print("#dvBarCodeSticker");
 
-    }, 500);
+    //}, 500);
 }

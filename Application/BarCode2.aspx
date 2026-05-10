@@ -36,7 +36,8 @@
                                     <asp:DropDownList ID="ddlSize" runat="server" CssClass="form-control form-control-lg" Width="100%" Style="text-align: left;">
                                     </asp:DropDownList>
                                 </div>
-                                <button type="button" id="btnGenerate" class="btn btn-primary mr-2" onclick="GenerateSticker();"> Generate Sticker </button>                                
+                                <%--<button type="button" id="btnGenerate" class="btn btn-primary mr-2" onclick="GenerateSticker();"> Generate Sticker </button>                                --%>
+                                <asp:Button ID="btnGenerate" runat="server" Text="Generate Sticker" CssClass="btn btn-primary mr-2" OnClick="btnGenerate_Click"/>
                             </div>
                         </div>
                     </div>

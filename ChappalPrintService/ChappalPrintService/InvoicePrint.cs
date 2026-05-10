@@ -20,6 +20,7 @@ namespace ChappalPrintService
     public partial class InvoicePrint : ServiceBase
     {
         string PrinterName = string.Empty;
+        string PrinterNameSticker = string.Empty;
         string ConactNumber = string.Empty;
         string InvoiceFooterNoteShort = string.Empty;
         string AddressShort = string.Empty;
@@ -49,6 +50,7 @@ namespace ChappalPrintService
             WriteLog("Version: 10-Dec-2025 06:20 PM", "OnStart");
             WriteLog("PerformTimerOperationCrystalReport", "OnStart");
             PrinterName = System.Configuration.ConfigurationManager.AppSettings["PrinterName"].ToString();
+            PrinterNameSticker = System.Configuration.ConfigurationManager.AppSettings["PrinterNameSticker"].ToString();
             DataTable dtShop = GetShopInfo(1);
             if(dtShop.Rows.Count > 0)
             {
@@ -92,8 +94,17 @@ namespace ChappalPrintService
                 DataTable dtOrders = GetPrintingInvoices(1);
                 if (dtOrders.Rows.Count > 0)
                 {                    
-                    WriteLog(string.Format("Order No-{0}- Started Printing.", dtOrders.Rows[0]["SaleID"].ToString()), string.Empty);
+                    WriteLog(string.Format("Sticker-{0}- Started Printing.", dtOrders.Rows[0]["StickerPrintingID"].ToString()), string.Empty);
                     if (PrintInvoiceReport(dtOrders, PrinterName))
+                    {
+
+                    }
+                }
+                DataTable dtSticker = GetPrintingStickers(1);
+                if(dtSticker.Rows.Count > 0)
+                {
+                    WriteLog(string.Format("Order No-{0}- Sticker Started Printing.", dtSticker.Rows[0]["StickerPrintingID"].ToString()), string.Empty);
+                    if (PrintSticker(dtSticker, PrinterNameSticker))
                     {
 
                     }
@@ -161,6 +172,44 @@ namespace ChappalPrintService
 
         #region Get Data
         public DataTable GetPrintingInvoices(int TypeID)
+        {
+            DataTable dtOrders = new DataTable();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.Connection = con;
+                        cmd.CommandTimeout = 120;
+                        cmd.CommandText = "uspGetPrintInvoices";
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        IDataParameterCollection pparams = cmd.Parameters;
+                        IDataParameter parameter = new SqlParameter()
+                        {
+                            ParameterName = "@TypeID",
+                            DbType = DbType.Int32,
+                            Value = TypeID
+                        };
+                        pparams.Add(parameter);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            dtOrders.Load(reader);
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteLog(ex.ToString(), "GetPrintingInvoices(int TypeID, long SaleInvoiceID, long CustomerID)");
+            }
+            return dtOrders;
+        }
+        public DataTable GetPrintingStickers(int TypeID)
         {
             DataTable dtOrders = new DataTable();
             try
@@ -277,6 +326,44 @@ namespace ChappalPrintService
 
             return flag;
         }
+        public bool UpdatePrintedSticker(int StickerPrintingID)
+        {
+            bool flag = false;
+            int maxRetries = 3;
+            for (int attempt = 1; attempt <= maxRetries; attempt++)
+            {
+                try
+                {
+                    using (SqlConnection con = new SqlConnection(conString))
+                    {
+                        con.Open();
+                        using (SqlCommand cmd = new SqlCommand("uspUpdatePrintedSticker", con))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.CommandTimeout = 120;
+
+                            cmd.Parameters.Add(new SqlParameter("@StickerPrintingID", SqlDbType.Int) { Value = StickerPrintingID });
+
+                            cmd.ExecuteNonQuery();
+                            flag = true;
+                        }
+                    }
+                    break;
+                }
+                catch (SqlException ex)
+                {
+
+                }
+                catch (Exception ex)
+                {
+                    WriteLog(ex.ToString(), "UpdatePrintedSticker");
+                    flag = false;
+                    break;
+                }
+            }
+
+            return flag;
+        }
         #endregion                
 
         #region Crystal Reports
@@ -328,6 +415,67 @@ namespace ChappalPrintService
 
                         }
                         WriteLog($"Order No-{dtValueOrder.Rows[0]["SaleID"].ToString()}-  Printed.", string.Empty);
+                    }
+                    catch (Exception ex)
+                    {
+                        WriteLog("Print Error: " + ex.Message, "PrintInvoiceReport");
+                        flag = false;
+                    }
+
+                }
+                else
+                {
+                    flag = false;
+                }
+            }
+            else
+            {
+                flag = false;
+            }
+            return flag;
+        }
+        private bool PrintSticker(DataTable dtValueOrder, string PrinterName)
+        {
+            string ServiceExecutionType = "0";
+            bool flag = true;
+            if (dtValueOrder.Rows.Count > 0)
+            {
+                if (PrinterName.Length > 0)
+                {
+                    try
+                    {
+                        using (ReportDocument report = (ReportDocument)new CrpSticker())
+                        {
+                            report.SetDataSource(dtValueOrder);
+                            report.Refresh();
+                            if (ServiceExecutionType == "0")
+                            {
+                                report.PrintOptions.PrinterName = PrinterName;
+                            }                            
+                            // --- Print ---
+                            if (ServiceExecutionType == "1")
+                            {
+                                string pdfPath = @"C:\Reports\Invoices_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".pdf";
+                                ExportOptions exportOptions = new ExportOptions();
+                                DiskFileDestinationOptions diskOptions = new DiskFileDestinationOptions();
+                                diskOptions.DiskFileName = pdfPath;
+                                exportOptions = report.ExportOptions;
+                                exportOptions.ExportDestinationType = ExportDestinationType.DiskFile;
+                                exportOptions.ExportFormatType = ExportFormatType.PortableDocFormat;
+                                exportOptions.DestinationOptions = diskOptions;
+                                report.Export();
+                            }
+                            else
+                            {
+                                report.PrintToPrinter(1, false, 0, 0);
+                            }
+                            if (!UpdatePrintedSticker(Convert.ToInt32(dtValueOrder.Rows[0]["StickerPrintingID"])))
+                            {
+                                WriteLog("Sticker Print not updated.", string.Empty);
+                            }
+
+                        }
+                        WriteLog($"StickerPrintingID-{dtValueOrder.Rows[0]["StickerPrintingID"].ToString()}-  Printed.", string.Empty);
                     }
                     catch (Exception ex)
                     {

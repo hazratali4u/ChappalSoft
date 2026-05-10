@@ -41,9 +41,7 @@ function LoadSticker(dtReport) {
 
     $("#stickerDetail").empty();
 
-    // SINGLE STICKER MODE
-    if ($("[id$='ddlColor']").val() != "0") {
-
+    
         var html = '';
 
         html += `
@@ -59,22 +57,11 @@ function LoadSticker(dtReport) {
                     border:0;
                     font-family:Arial;
                 ">
-
-                    <div style="
-                        font-size:9px;
-                        font-weight:bold;
-                        line-height:12px;
-                        white-space:nowrap;
-                        overflow:hidden;
-                    ">
-                        ${dtReport[0].ItemName}
-                    </div>
-
                     <img
                         src="data:image/png;base64,${dtReport[0].Image}"
                         style="
                             width:1.4in;
-                            height:0.45in;
+                            height:0.55in;
                             object-fit:contain;
                             display:block;
                             margin:0 auto;
@@ -95,68 +82,7 @@ function LoadSticker(dtReport) {
         `;
 
         $("#stickerDetail").html(html);
-    }
-
-        // MULTIPLE STICKERS MODE
-    else {
-
-        var html = "";
-
-        for (var i = 0; i < dtReport.length; i++) {
-
-            html += `
-                <tr>
-
-                    <td style="
-                        width:2in;
-                        height:1in;
-                        border:1px solid black;
-                        padding:2px;
-                        text-align:center;
-                        vertical-align:middle;
-                        overflow:hidden;
-                        font-family:Arial;
-                    ">
-
-                        <div style="
-                            font-size:9px;
-                            font-weight:bold;
-                            line-height:12px;
-                            white-space:nowrap;
-                            overflow:hidden;
-                        ">
-                            ${dtReport[i].ItemName}
-                        </div>
-
-                        <img
-                            src="data:image/png;base64,${dtReport[i].Image}"
-                            style="
-                                width:1.4in;
-                                height:0.45in;
-                                object-fit:contain;
-                                display:block;
-                                margin:0 auto;
-                            "
-                        />
-
-                        <div style="
-                            font-size:8px;
-                            line-height:10px;
-                            white-space:nowrap;
-                            overflow:hidden;
-                        ">
-                            ${dtReport[i].ColorName} - ${dtReport[i].Size}
-                        </div>
-
-                    </td>
-
-                </tr>
-            `;
-        }
-
-        $("#stickerDetail").html(html);
-    }
-
+    
     // PRINT
     setTimeout(function () {
 

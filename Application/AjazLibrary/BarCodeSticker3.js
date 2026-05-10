@@ -71,10 +71,14 @@ function LoadSticker(dtReport) {
                     />
 
                     <div style="
-                        font-size:8px;
-                        line-height:10px;
-                        white-space:nowrap;
-                        overflow:hidden;
+                        font-size: 12px;
+                        font-weight: bold;
+                        line-height: 14px;
+                        white-space: nowrap;
+                                                overflow: hidden;
+                        text-align: center;
+                        margin-top: 2px;
+                        font-family: Arial, sans-serif;
                     ">
                         ${dtReport[0].ColorName}
                     </div>
@@ -118,12 +122,16 @@ function LoadSticker(dtReport) {
                         />
 
                         <div style="
-                            font-size:8px;
-                            line-height:10px;
-                            white-space:nowrap;
-                            overflow:hidden;
+                            font-size: 12px;
+                            font-weight: bold;
+                            line-height: 14px;
+                            white-space: nowrap;
+                                                        overflow: hidden;
+                            text-align: center;
+                            margin-top: 2px;
+                            font-family: Arial, sans-serif;
                         ">
-                            ${dtReport[i].ColorName}
+                            ${dtReport[0].ColorName}
                         </div>
 
                     </td>

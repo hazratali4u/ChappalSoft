@@ -261,7 +261,10 @@ function qtyBlur(obj) {
 function qtyKepress(input, event) {
     var charCode = event.which ? event.which : event.keyCode;
     var currentRow = $(input).closest('tr');
-    if (event.key === 'Tab' || charCode === 9) {
+    if (event.key === 'Enter' || charCode === 13) {
+        $("[id$='txtSearch']").focus();
+    }
+    else if (event.key === 'Tab' || charCode === 9) {
         return true; // allow default tab behavior
     }
         // Allow control keys: Backspace, Delete, Left, Right

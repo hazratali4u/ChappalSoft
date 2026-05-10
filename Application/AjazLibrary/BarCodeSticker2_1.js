@@ -32,49 +32,113 @@ function GenerateSticker() {
         });
 }
 function LoadSticker(dtReport) {
+
     dtReport = JSON.stringify(dtReport);
+
     var result = jQuery.parseJSON(dtReport.replace(/&quot;/g, '"'));
+
     dtReport = eval(result.d);
 
     $("#stickerDetail").empty();
-    if ($("[id$='ddlColor']").val() == "0") {
-        var row = "";
-        var row1 = "";
+
+    // SINGLE STICKER MODE
+    if ($("[id$='ddlColor']").val() != "0") {
+
+        var html = '';
+
+        html += `
+            <tr>
+                <td style="
+                    width:2in;
+                    height:1in;
+                    padding:0;
+                    margin:0;
+                    text-align:center;
+                    vertical-align:middle;
+                    overflow:hidden;
+                    border:0;
+                    font-family:Arial;
+                ">
+                    <img
+                        src="data:image/png;base64,${dtReport[0].Image}"
+                        style="
+                            width: 100%;
+                            height:0.45in;
+                            object-fit:contain;
+                            display:block;
+                            margin:0 auto;
+                        "
+                    />
+
+                    <div style="
+                        font-size:8px;
+                        line-height:10px;
+                        white-space:nowrap;
+                        overflow:hidden;
+                    ">
+                        ${dtReport[0].ColorName}
+                    </div>
+
+                </td>
+            </tr>
+        `;
+
+        $("#stickerDetail").html(html);
+    }
+
+        // MULTIPLE STICKERS MODE
+    else {
+
+        var html = "";
 
         for (var i = 0; i < dtReport.length; i++) {
-            // build one cell for image
-            row += '<td style="width:12.5%;border:1px solid black;">' +
-                '<img style="width:100px; height:100px;" src="data:image/png;base64,' + dtReport[i].Image + '" />' +
-                '</td>';
 
-            // build one cell for name
-            row1 += '<td style="width:12.5%;border:1px solid black;">' +
-                dtReport[i].ItemName + '-' + dtReport[i].ColorName + '-' + dtReport[i].Size +
-                '</td>';
+            html += `
+                <tr>
 
-            // once we reach 8 items OR last record → append rows
-            if ((i + 1) % 8 === 0 || i === dtReport.length - 1) {
-                $("#stickerDetail").append("<tr>" + row + "</tr>");
-                $("#stickerDetail").append("<tr>" + row1 + "</tr>");
-                row = "";
-                row1 = "";
-            }
+                    <td style="
+                        width:2in;
+                        height:1in;
+                        border:1px solid black;
+                        padding:0px;
+                        text-align:center;
+                        vertical-align:middle;
+                        overflow:hidden;
+                        font-family:Arial;
+                    ">
+                        <img
+                            src="data:image/png;base64,${dtReport[i].Image}"
+                            style="
+                                width: 100%;
+                                height:0.45in;
+                                object-fit:contain;
+                                display:block;
+                                margin:0 auto;
+                            "
+                        />
+
+                        <div style="
+                            font-size:8px;
+                            line-height:10px;
+                            white-space:nowrap;
+                            overflow:hidden;
+                        ">
+                            ${dtReport[i].ColorName}
+                        </div>
+
+                    </td>
+
+                </tr>
+            `;
         }
-    }
-    else {
-        for (var i = 0, len = dtReport.length; i < len; i++) {
-            var row = $(
-             '<tr><td style="width:50%;text-align:center;">' +
-               '<img style="width:95%; height:100px;" src="data:image/png;base64,' + dtReport[0].Image + '" />' +
-             '</td><td style="width:25%;">' +
-               '' +
-               '</td><td style="width:25%;">' +
-               '' +
-             '</td></tr>'
-           );
-            $("#stickerDetail").append(row);
-        }
+
+        $("#stickerDetail").html(html);
     }
 
-    $.print("#dvBarCodeStcker");
+    // PRINT
+    setTimeout(function () {
+
+        $.print("#dvBarCodeSticker");
+
+    }, 500);
 }

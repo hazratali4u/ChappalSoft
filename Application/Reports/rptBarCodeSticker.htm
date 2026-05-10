@@ -1,86 +1,47 @@
-﻿<div class="col-md-12" style="display: none;">
-    <div id="dvBarCodeStcker" class="tablesorter">
-        <style type="text/css">
-            * {
-                box-sizing: border-box;
-            }
-            .dvBarCodeStcker {
-                padding: 10px 5px;
-                font-family: 'Arial', sans-serif;
-                font-size: 13px;
-                font-weight: bold;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-                text-align: left;
-                margin-left: 10px;
-                margin-right: 10px;
+﻿<div class="col-md-12" style="display:none;" id="printArea">
+    <style>
+        @media print {
+            @page {
+                size: 2in 1in; /* Width Height */
+                margin: 0;
             }
 
-                .dvBarCodeStcker h5 {
-                    margin: 5px 0;
-                    font-size: 14px;
-                }
-                .dvBarCodeStcker h6 {
-                    margin: 5px 0;
-                    font-size: 12px;
-                }
+            html, body {
+                margin: 0;
+                padding: 0;
+                width: 2in;
+                height: 1in;
+            }
 
-                .dvBarCodeStcker hr {
-                    margin: 0;
-                    border: 1px solid black;
-                }
+            #dvBarCodeSticker {
+                width: 2in;
+                height: 1in;
+                overflow: hidden;
+            }
 
-                .dvBarCodeStcker .detail-section {
-                    margin: 5px 0;
-                }
-
-                    .dvBarCodeStcker .detail-section table {
-                        width: 100%;
-                    }
-
-                        .dvBarCodeStcker .detail-section table tr td {
-                            font-size: 12px;
-                            font-weight: bold;
-                            border: 1px solid black;
-                            padding: 5px;
-                            text-transform: capitalize;
-                        }
-
-                .dvBarCodeStcker label {
-                    display: inline;
-                }
-
-            table {
+            #tblSticker {
                 width: 100%;
                 border-collapse: collapse;
             }
 
-            h1, h2, h3, h4, h5, h6 {
-                font-weight: bold;
-                line-height: 1.1;
-                color: #000;
-                text-transform: capitalize;
-            }
-
-            @media print {
-                body, html {
+                #tblSticker td {
+                    padding: 0;
                     margin: 0;
-                    padding: 0;
+                    text-align: center;
+                    vertical-align: middle;
+                    font-size: 10px;
                 }
 
-                .dvBarCodeStcker {
-                    padding: 0;
-                    margin-left: 10px; /* <-- ensures left alignment */
-                    margin-right: 10px;
-                    text-align: left;
+                #tblSticker img {
+                    width: 100%;
+                    height: auto;
                 }
-            }
-        </style>
+        }
+    </style>
 
-        <div class="dvBarCodeStcker">
-            <table style="border-collapse: collapse; width: 50%;" id="tblSticker">                
-                <tbody id="stickerDetail"></tbody>                
-            </table>
-        </div>
+    <div id="dvBarCodeSticker">
+        <table id="tblSticker">
+            <tbody id="stickerDetail"></tbody>
+        </table>
     </div>
 </div>

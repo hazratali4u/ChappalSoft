@@ -49,7 +49,7 @@ public partial class BarCode2 : System.Web.UI.Page
     }
     private void LoadColor()
     {
-        DataTable dtColor = color.GetColor(3);
+        DataTable dtColor = color.GetColor(2);
         ddlColor.DataSource = dtColor;
         ddlColor.DataTextField = "Name";
         ddlColor.DataValueField = "ColorID";

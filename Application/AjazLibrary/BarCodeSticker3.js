@@ -32,21 +32,12 @@ function GenerateSticker() {
         });
 }
 function LoadSticker(dtReport) {
-
     dtReport = JSON.stringify(dtReport);
-
     var result = jQuery.parseJSON(dtReport.replace(/&quot;/g, '"'));
-
     dtReport = eval(result.d);
-
     $("#stickerDetail").empty();
-
-    // SINGLE STICKER MODE
-    if ($("[id$='ddlColor']").val() != "0") {
-
-        var html = '';
-
-        html += `
+    var html = '';
+    html += `
             <tr>
                 <td style="
                     width:2in;
@@ -86,66 +77,8 @@ function LoadSticker(dtReport) {
                 </td>
             </tr>
         `;
-
-        $("#stickerDetail").html(html);
-    }
-
-        // MULTIPLE STICKERS MODE
-    else {
-
-        var html = "";
-
-        for (var i = 0; i < dtReport.length; i++) {
-
-            html += `
-                <tr>
-
-                    <td style="
-                        width:2in;
-                        height:1in;
-                        border:1px solid black;
-                        padding:0px;
-                        text-align:center;
-                        vertical-align:middle;
-                        overflow:hidden;
-                        font-family:Arial;
-                    ">
-                        <img
-                            src="data:image/png;base64,${dtReport[i].Image}"
-                            style="
-                                width: 100%;
-                                height:0.45in;
-                                object-fit:contain;
-                                display:block;
-                                margin:0 auto;
-                            "
-                        />
-
-                        <div style="
-                            font-size: 12px;
-                            font-weight: bold;
-                            line-height: 14px;
-                            white-space: nowrap;
-                                                        overflow: hidden;
-                            text-align: center;
-                            margin-top: 2px;
-                            font-family: Arial, sans-serif;
-                        ">
-                            ${dtReport[0].ColorName}
-                        </div>
-
-                    </td>
-
-                </tr>
-            `;
-        }
-
-        $("#stickerDetail").html(html);
-    }
-
-    // PRINT
+    $("#stickerDetail").html(html);
     setTimeout(function () {
-
         $.print("#dvBarCodeSticker");
 
     }, 500);

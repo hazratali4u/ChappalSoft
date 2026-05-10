@@ -1,4 +1,4 @@
-﻿<%@ Page Title="ChappalSoft : POS Bar Code-2" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="POSBarCode1.aspx.cs" Inherits="POSBarCode1" %>
+﻿<%@ Page Title="ChappalSoft : POS Bar Code-2" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="POSBarCode.aspx.cs" Inherits="POSBarCode" %>
 
 <asp:Content ID="pageContent" ContentPlaceHolderID="childPage" runat="Server">
     <style type="text/css">

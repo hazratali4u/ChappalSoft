@@ -10,7 +10,7 @@ using System.Web.Services;
 using Newtonsoft.Json;
 using System.Web;
 
-public partial class POSBarCode1 : System.Web.UI.Page
+public partial class POSBarCode : System.Web.UI.Page
 {
     CategoryController category = new CategoryController();
     ItemController item = new ItemController();

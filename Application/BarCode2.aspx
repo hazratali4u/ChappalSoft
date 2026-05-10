@@ -7,7 +7,7 @@
                     <div class="page-header flex-wrap">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Shop Setting</a></li>
+                                <li class="breadcrumb-item"><a href="#">Item Management</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Bar Code Sticker </li>
                             </ol>
                         </nav>
@@ -15,6 +15,9 @@
                     <div class="row">
                         <div class="card" style="width: 100%;">
                             <div class="card-body">
+                                <div class="form-group">
+                                    <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
+                                </div>
                                 <div class="form-group">
                                     <label for="lblCategory">Category</label>
                                     <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control form-control-lg" Width="100%" Style="text-align: left;">

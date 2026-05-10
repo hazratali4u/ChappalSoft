@@ -110,14 +110,23 @@ public partial class BarCode2 : System.Web.UI.Page
     {
         int ItemID = Convert.ToInt32(ddlItem.SelectedValue);
         int ColorID = Convert.ToInt32(ddlColor.SelectedValue);
-        int SizeID = Convert.ToInt32(ddlSize.SelectedValue);
+        int SizeID = Convert.ToInt32(ddlSize.SelectedItem.Text);
         var oBitmap = Generatecode(ItemID,ColorID,SizeID);
 
         var ms = new MemoryStream();
         oBitmap.Save(ms, ImageFormat.Png);
         var bytearray = ms.ToArray();
         
-        item.InsertStocker(bytearray,ItemID,ColorID,SizeID,ddlItem.SelectedItem.Text);
+        if(item.InsertStocker(bytearray,ItemID,ColorID,SizeID,ddlItem.SelectedItem.Text)>0)
+        {
+            lblError.ForeColor = System.Drawing.Color.Green;
+            lblError.Text = "Sticker created!";
+        }
+        else
+        {
+            lblError.ForeColor = System.Drawing.Color.Red;
+            lblError.Text = "Some error occured!";
+        }
 
     }
     private Bitmap Generatecode(int ItemID,int ColorID,int SizeID)

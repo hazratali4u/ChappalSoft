@@ -7,7 +7,7 @@
                     <div class="page-header flex-wrap">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Shop Setting</a></li>
+                                <li class="breadcrumb-item"><a href="#">Item Management</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Bar Code Sticker </li>
                             </ol>
                         </nav>

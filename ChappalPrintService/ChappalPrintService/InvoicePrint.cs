@@ -94,7 +94,7 @@ namespace ChappalPrintService
                 DataTable dtOrders = GetPrintingInvoices(1);
                 if (dtOrders.Rows.Count > 0)
                 {                    
-                    WriteLog(string.Format("Sticker-{0}- Started Printing.", dtOrders.Rows[0]["StickerPrintingID"].ToString()), string.Empty);
+                    WriteLog(string.Format("Sticker-{0}- Started Printing.", dtOrders.Rows[0]["SaleID"].ToString()), string.Empty);
                     if (PrintInvoiceReport(dtOrders, PrinterName))
                     {
 

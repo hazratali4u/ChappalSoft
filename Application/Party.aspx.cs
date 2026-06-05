@@ -101,6 +101,8 @@ public partial class Party : System.Web.UI.Page
         divView.Visible = true;
         divAdd.Visible = false;
         txtOpeningBalance.Enabled = true;
+        btnSave.Text = "Save";
+        Clear();
         txtSearch.Focus();
     }
 

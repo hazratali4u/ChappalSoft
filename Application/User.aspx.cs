@@ -85,7 +85,9 @@ public partial class User : System.Web.UI.Page
     {
         divView.Visible = true;
         divAdd.Visible = false;
-        txtSearch.Focus();
+        btnSave.Text = "Save";
+        Clear();
+        txtSearch.Focus();        
     }
 
     protected void gvUsers_RowEditing(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)

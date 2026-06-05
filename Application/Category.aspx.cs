@@ -85,6 +85,8 @@ public partial class Category : System.Web.UI.Page
     {
         divView.Visible = true;
         divAdd.Visible = false;
+        btnSave.Text = "Save";
+        Clear();
         txtSearch.Focus();
     }
 

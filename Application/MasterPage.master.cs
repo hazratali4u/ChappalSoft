@@ -116,6 +116,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
             case "SaleCoat.aspx":
                 ltrlFiles.Text = "<script src='AjazLibrary/SaleCoat6.js'></script> <script src='AjazLibrary/moment-with-locales.js'></script>";
                 break;
+            case "POSBarCode.aspx":
+                ltrlFiles.Text = "<script src='AjazLibrary/POSBarCode1.js'></script> <script src='AjazLibrary/moment-with-locales.js'></script>";
+                break;
             case "Shop.aspx":
                 ltrlFiles.Text = "<script src='AjazLibrary/Shop.js'></script>";
                 break;
@@ -166,10 +169,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 break;
             case "rptDocument.aspx":
                 ltrlFiles.Text = "<script src='AjazLibrary/ReportDocument.js'></script>";
-                break;
-            case "POSBarCode.aspx":
-                ltrlFiles.Text = "<script src='AjazLibrary/POSBarCode1.js'></script>";
-                break;
+                break;            
         }        
     }   
 }

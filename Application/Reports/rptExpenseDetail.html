@@ -1,0 +1,51 @@
+﻿<!-- Print Preview Modal -->
+<div id="printModalDeatil" style="display:none; position:fixed; top:0; left:0; width:100%;
+     height:100%; background:rgba(0,0,0,0.5); z-index:9999;">
+    <div style="background:#fff; margin:30px auto; width:80%; max-height:90vh;
+                border-radius:8px; overflow:hidden; display:flex; flex-direction:column;">
+
+        <!-- Modal Header -->
+        <div style="background:#2c3e50; color:#fff; padding:12px 20px;
+                    display:flex; justify-content:space-between; align-items:center;">
+            <h4 style="margin:0;">Expense Report Detail</h4>
+            <div>
+                <button type="button" onclick="printPreviewDetail()"
+                        style="background:#27ae60; color:#fff; border:none;
+                           padding:6px 16px; border-radius:4px; cursor:pointer; margin-right:8px;">
+                    🖨️ Print
+                </button>
+                <button type="button" onclick="closePreviewDetail()"
+                        style="background:#e74c3c; color:#fff; border:none;
+                           padding:6px 16px; border-radius:4px; cursor:pointer;">
+                    ✕ Close
+                </button>
+            </div>
+        </div>
+        <!-- Printable Area -->
+        <div id="printAreaDetail" style="padding:30px; overflow-y:auto; flex:1;">
+            <div style="text-align:center; margin-bottom:20px;">
+                <h2 style="margin:0;"><label id="lblShopNameDetail"></label></h2>
+                <p style="margin:4px 0; color:#555;"><label id="lblAddressDetail"></label> | <label id="lblPhoneDetail"></label> | <label id="lblContactPersonDetail"></label></p>                
+                <hr />
+                <h3>Expense Report Detail</h3>
+            </div>
+            <!-- Sale Header Info -->            
+            <!-- Sale Info -->
+            <div id="saleInfo" style="margin-bottom:20px;"></div>
+            <!-- Detail Table -->
+            <table id="previewTable" style="width:100%; border-collapse:collapse; font-size:14px;">
+                <thead>
+                    <tr style="background:#2c3e50; color:#fff;">
+                        <th style="padding:8px; border:1px solid #ccc;">#</th>
+                        <th style="padding:8px; border:1px solid #ccc;">Expense Name</th>
+                        <th style="padding:8px; border:1px solid #ccc;">Remarks</th>
+                        <th style="padding:8px; border:1px solid #ccc;">Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="previewBodyDetail"></tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

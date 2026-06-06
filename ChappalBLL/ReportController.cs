@@ -62,5 +62,15 @@ namespace ChappalBLL
             };
             return dbHelper.ExecuteDataTable("uspGetDocumentReport", parameters);
         }
+        public DataTable GetExpenseReport(int TypeID, int ExpenseHeadID, DateTime FromDate, DateTime ToDate)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@TypeID", TypeID),
+                new SqlParameter("@ExpenseHeadID", ExpenseHeadID),
+                new SqlParameter("@FromDate", FromDate),
+                new SqlParameter("@ToDate",ToDate)
+            };
+            return dbHelper.ExecuteDataTable("uspGetExpenseReport", parameters);
+        }
     }
 }

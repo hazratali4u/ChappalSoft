@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Application(1)", "Application\", "{499F593B-6FBC-41C0-AC87-FF6500A5E90A}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Application", "Application\", "{499F593B-6FBC-41C0-AC87-FF6500A5E90A}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
 		ProjectReferences = "{cd93e20a-343b-423b-b40b-7e649296195c}|ChappalBLL.dll;{C0D71C2C-5E67-4E9A-8296-CD5D06CA3B8D}|ChappalDAL.dll;"

@@ -1297,66 +1297,51 @@
       }
 
       var plot = $.plot(
-        "#flotChart",
-        [
-          {
-            data: dashData4,
-            color: "#bcc1f3",
-            lines: {
-              fillColor: "#bcc1f3",
-            },
-          },
-          {
-            data: dashData3,
-            color: "#3f50f6",
-            lines: {
-              fillColor: "#3f50f6",
-            },
-          },
-          {
-            data: dashData2,
-            color: "#ffab2d",
-            lines: {
-              fillColor: { colors: [{ opacity: 0 }, { opacity: 0 }] },
-            },
-          },
-        ],
+    "#flotChart",
+    [
         {
-          series: {
+            data: dashData4,
+            label: "Total POs",
+            color: "#bcc1f3",
+            lines: { fillColor: "#bcc1f3" }
+        },
+        {
+            data: dashData3,
+            label: "Approved POs",
+            color: "#3f50f6",
+            lines: { fillColor: "#3f50f6" }
+        },
+        {
+            data: dashData2,
+            label: "Pending POs",
+            color: "#ffab2d",
+            lines: { fillColor: { colors: [{ opacity: 0 }, { opacity: 0 }] } }
+        }
+    ],
+    {
+        series: {
             shadowSize: 0,
-            lines: {
-              show: true,
-              lineWidth: 2,
-              fill: true,
-            },
-          },
-          grid: {
-            borderWidth: 0,
-            labelMargin: 8,
-          },
-          yaxis: {
-            show: true,
-            min: 0,
-            max: 100,
-            ticks: true,
-          },
-          xaxis: {
+            lines: { show: true, lineWidth: 2, fill: true }
+        },
+        grid: { borderWidth: 0, labelMargin: 8 },
+        yaxis: { show: true, min: 0, max: 100, ticks: 5 },
+        xaxis: {
             show: true,
             color: "#fff",
             tickColor: "#eee",
             ticks: [
-              [0, "2000"],
-              [10, "2500"],
-              [20, "3000"],
-              [30, "3500"],
-              [40, "4000"],
-              [50, "4500"],
-              [60, "5000"],
-              [70, "5500"],
-            ],
-          },
+                [0, "2000"],
+                [10, "2500"],
+                [20, "3000"],
+                [30, "3500"],
+                [40, "4000"],
+                [50, "4500"],
+                [60, "5000"],
+                [70, "5500"]
+            ]
         }
-      );
+    }
+);
     });
   });
 })(jQuery);

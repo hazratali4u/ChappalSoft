@@ -1295,53 +1295,58 @@
         }
         return data;
       }
+        // X = day position (0-6), Y = sales amount
+      var dashData4 = [[0, 15000], [1, 22000], [2, 18000], [3, 35000], [4, 28000], [5, 42000], [6, 38000]]; // Total Sales
+      var dashData3 = [[0, 10000], [1, 17000], [2, 14000], [3, 28000], [4, 22000], [5, 35000], [6, 30000]]; // Approved
+      var dashData2 = [[0, 5000], [1, 8000], [2, 6000], [3, 12000], [4, 9000], [5, 15000], [6, 12000]]; // Pending
+      var daysData = JSON.parse(document.getElementById("childPage_hfDays").value);
+      var xTicks = daysData.map(function (item, i) {
+          return [i, item.DayName];
+      });
 
       var plot = $.plot(
-    "#flotChart",
-    [
-        {
-            data: dashData4,
-            label: "Total POs",
-            color: "#bcc1f3",
-            lines: { fillColor: "#bcc1f3" }
-        },
-        {
-            data: dashData3,
-            label: "Approved POs",
-            color: "#3f50f6",
-            lines: { fillColor: "#3f50f6" }
-        },
-        {
-            data: dashData2,
-            label: "Pending POs",
-            color: "#ffab2d",
-            lines: { fillColor: { colors: [{ opacity: 0 }, { opacity: 0 }] } }
-        }
-    ],
-    {
-        series: {
-            shadowSize: 0,
-            lines: { show: true, lineWidth: 2, fill: true }
-        },
-        grid: { borderWidth: 0, labelMargin: 8 },
-        yaxis: { show: true, min: 0, max: 100, ticks: 5 },
-        xaxis: {
-            show: true,
-            color: "#fff",
-            tickColor: "#eee",
-            ticks: [
-                [0, "2000"],
-                [10, "2500"],
-                [20, "3000"],
-                [30, "3500"],
-                [40, "4000"],
-                [50, "4500"],
-                [60, "5000"],
-                [70, "5500"]
-            ]
-        }
-    }
-);
+          "#flotChart",
+          [
+              {
+                  data: dashData4,
+                  label: "Total POs",
+                  color: "#bcc1f3",
+                  lines: { fillColor: "#bcc1f3" }
+              },
+              {
+                  data: dashData3,
+                  label: "Approved POs",
+                  color: "#3f50f6",
+                  lines: { fillColor: "#3f50f6" }
+              },
+              {
+                  data: dashData2,
+                  label: "Pending POs",
+                  color: "#ffab2d",
+                  lines: { fillColor: "#ffab2d" }
+              }
+          ],
+          {
+              series: {
+                  shadowSize: 0,
+                  lines: { show: true, lineWidth: 2, fill: true }
+              },
+              grid: { borderWidth: 0, labelMargin: 8 },
+              yaxis: {
+                  show: true,
+                  min: 0,
+                  max: 50000,    // <-- adjust to your max sales amount
+                  ticks: 5
+              },
+              xaxis: {
+                  show: true,
+                  color: "#fff",
+                  tickColor: "#eee",
+                  ticks: xTicks
+              }
+          }
+      );
+  
     });
   });
 })(jQuery);

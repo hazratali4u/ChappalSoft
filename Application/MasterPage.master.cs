@@ -179,6 +179,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
             case "rptExpense.aspx":
                 ltrlFiles.Text = "<script src='AjazLibrary/rptExpense.js'></script>";
                 break;
+            case "rptProfitLoss.aspx":
+                ltrlFiles.Text = "<script src='AjazLibrary/rptProfitLoss.js'></script>";
+                break;
         }        
     }   
 }

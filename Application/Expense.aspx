@@ -1,4 +1,4 @@
-﻿<%@ Page Title="MobileSoft : Expense Entry" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Expense.aspx.cs" Inherits="Expense" %>
+﻿<%@ Page Title="ChappalSoft : Expense Entry" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Expense.aspx.cs" Inherits="Expense" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="pageContent" ContentPlaceHolderID="childPage" runat="Server">
     <style type="text/css">

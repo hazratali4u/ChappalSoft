@@ -72,5 +72,14 @@ namespace ChappalBLL
             };
             return dbHelper.ExecuteDataTable("uspGetExpenseReport", parameters);
         }
+        public DataTable GetProfitLossReport(int TypeID, DateTime FromDate, DateTime ToDate)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@TypeID", TypeID),
+                new SqlParameter("@FromDate", FromDate),
+                new SqlParameter("@ToDate",ToDate)
+            };
+            return dbHelper.ExecuteDataTable("uspGetProfitLossReport", parameters);
+        }
     }
 }

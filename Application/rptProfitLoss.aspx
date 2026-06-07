@@ -1,4 +1,4 @@
-﻿<%@ Page Title="ChappalSoft : Expense Report" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="rptExpense.aspx.cs" Inherits="rptExpense" %>
+﻿<%@ Page Title="ChappalSoft : Profit & Loss Report" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="rptProfitLoss.aspx.cs" Inherits="rptProfitLoss" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="pageContent" ContentPlaceHolderID="childPage" runat="Server">
     <style type="text/css">
@@ -24,7 +24,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Reports</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Expense Report </li>
+                                <li class="breadcrumb-item active" aria-current="page">Profit & Loss Report </li>
                             </ol>
                         </nav>
                     </div>
@@ -33,25 +33,10 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <asp:RadioButtonList ID="rblReportType" runat="server" RepeatDirection="Horizontal" Width="100%">
-                                            <asp:ListItem Value="1" Text="Summary" Selected="True"></asp:ListItem>
-                                            <asp:ListItem Value="2" Text="Detail"></asp:ListItem>
-                                        </asp:RadioButtonList>
                                         <asp:HiddenField ID="hfShopName" runat="server" Value="" />
                                         <asp:HiddenField ID="hfAddress" runat="server" Value="" />
                                         <asp:HiddenField ID="hfPhone" runat="server" Value="" />
                                         <asp:HiddenField ID="hfContactPerson" runat="server" Value="" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <label for="lblExpenseHead">Expense Head</label>
-                                    <br />
-                                    <asp:DropDownList ID="ddlExpenseHead" runat="server" CssClass="form-control form-control-lg" Width="100%" style="text-align:left;"
-                                        onfocus="this.style.background='#EAF3DE'; this.style.borderColor='#639922';"
-                                                onblur="this.style.background=''; this.style.borderColor='';">
-                                    </asp:DropDownList>
-                                        <br />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -96,6 +81,5 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <% Response.WriteFile("~/Reports/rptExpenseSummary.html");%>
-    <% Response.WriteFile("~/Reports/rptExpenseDetail.html");%>
+    <% Response.WriteFile("~/Reports/rptProfitLoss.html");%>
 </asp:Content>

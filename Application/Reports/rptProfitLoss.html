@@ -1,0 +1,64 @@
+﻿<!-- Print Preview Modal -->
+<div id="printModal" style="display:none; position:fixed; top:0; left:0; width:100%;
+     height:100%; background:rgba(0,0,0,0.5); z-index:9999;">
+    <div style="background:#fff; margin:30px auto; width:80%; max-height:90vh;
+                border-radius:8px; overflow:hidden; display:flex; flex-direction:column;">
+
+        <!-- Modal Header -->
+        <div style="background:#2c3e50; color:#fff; padding:12px 20px;
+                    display:flex; justify-content:space-between; align-items:center;">
+            <h4 style="margin:0;">Profit & Loss Report</h4>
+            <div>
+                <button type="button" onclick="printPreview()"
+                        style="background:#27ae60; color:#fff; border:none;
+                           padding:6px 16px; border-radius:4px; cursor:pointer; margin-right:8px;">
+                    🖨️ Print
+                </button>
+                <button type="button" onclick="closePreview()"
+                        style="background:#e74c3c; color:#fff; border:none;
+                           padding:6px 16px; border-radius:4px; cursor:pointer;">
+                    ✕ Close
+                </button>
+            </div>
+        </div>
+        <!-- Printable Area -->
+        <div id="printArea" style="padding:30px; overflow-y:auto; flex:1;">
+            <div style="text-align:center; margin-bottom:20px;">
+                <h2 style="margin:0;"><label id="lblShopName"></label></h2>
+                <p style="margin:4px 0; color:#555;"><label id="lblAddress"></label> | <label id="lblPhone"></label> | <label id="lblContactPerson"></label></p>                
+                <hr />
+                <h3>Profit & Loss Report</h3>
+            </div>
+            <!-- Sale Header Info -->            
+            <!-- Sale Info -->
+            <div id="saleInfoSummary" style="margin-bottom:20px;"></div>
+            <!-- Detail Table -->
+            <table id="previewTableSummary" style="width:100%; border-collapse:collapse; font-size:14px;">
+                <tr style=" background:#f0f0f0;">
+                    <td style="padding:8px; border:1px solid #ccc; text-align:right;width:50%;">
+                        Total Sale:
+                    </td>
+                    <td id="totalSale" style="padding:8px; border:1px solid #ccc;text-align:right;width:50%;"></td>
+                </tr>
+                <tr style="background:#f0f0f0;">
+                    <td style="padding:8px; border:1px solid #ccc; text-align:right;width:50%;">
+                        Total Cost:
+                    </td>
+                    <td id="totalPurchase" style="padding:8px; border:1px solid #ccc;text-align:right;width:50%;"></td>
+                </tr>
+                <tr style="background:#f0f0f0;">
+                    <td style="padding:8px; border:1px solid #ccc; text-align:right;width:50%;">
+                        Total Expense:
+                    </td>
+                    <td id="totalExpense" style="padding:8px; border:1px solid #ccc;text-align:right;width:50%;"></td>
+                </tr>
+                <tr style="font-weight:bold; background:#f0f0f0;">
+                    <td style="padding:8px; border:1px solid #ccc; text-align:right;width:50%;">
+                        Net Profit:
+                    </td>
+                    <td id="totalProfit" style="padding:8px; border:1px solid #ccc;text-align:right;width:50%;"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="MobileSoft : Add Expense Head" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ExpenseHead.aspx.cs" Inherits="ExpenseHead" %>
+﻿<%@ Page Title="ChappalSoft : Add Expense Head" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ExpenseHead.aspx.cs" Inherits="ExpenseHead" %>
 
 <asp:Content ID="pageContent" ContentPlaceHolderID="childPage" runat="Server">
     <style type="text/css">

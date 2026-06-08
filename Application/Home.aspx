@@ -9,6 +9,9 @@
             </div>
             <div class="row">
                 <asp:HiddenField ID="hfDays" runat="server" Value="" />
+                <asp:HiddenField ID="hf7DaysPurchase" runat="server" Value="" />
+                <asp:HiddenField ID="hf7DaysSale" runat="server" Value="" />
+                <asp:HiddenField ID="hf7DaysExpense" runat="server" Value="" />
               <div class="col-xl-3 col-lg-12 stretch-card grid-margin">
                 <div class="row">
                   <div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">

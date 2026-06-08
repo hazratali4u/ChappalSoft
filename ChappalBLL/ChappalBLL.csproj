@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DashboardController.cs" />
     <Compile Include="ExpenseController.cs" />
     <Compile Include="ReceiptController.cs" />
     <Compile Include="PartyController.cs" />

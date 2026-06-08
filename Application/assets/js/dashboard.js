@@ -1304,49 +1304,79 @@
           return [i, item.DayName];
       });
 
-      var plot = $.plot(
-          "#flotChart",
-          [
+      var hfPurchase = document.getElementById("childPage_hf7DaysPurchase").value;
+      var hfSale = document.getElementById("childPage_hf7DaysSale").value;
+      var hfExpense = document.getElementById("childPage_hf7DaysExpense").value;
+
+      if (hfPurchase && hfSale && hfExpense) {
+
+          var rawPurchase = JSON.parse(hfPurchase);
+          var rawSale = JSON.parse(hfSale);
+          var rawExpense = JSON.parse(hfExpense);
+
+          console.log("Purchase:", rawPurchase);
+          console.log("Sale:", rawSale);
+          console.log("Expense:", rawExpense);
+
+          var dashData4 = rawPurchase.map(function (item, i) { return [i, item.TotalAmount]; });
+          var dashData2 = rawSale.map(function (item, i) { return [i, item.TotalAmount]; });
+          var dashData3 = rawExpense.map(function (item, i) { return [i, item.TotalAmount]; });
+
+          var xTicks = rawPurchase.map(function (item, i) { return [i, item.DayName]; });
+
+          // Correct max across all 3
+          var maxVal = Math.max(
+              Math.max.apply(null, rawPurchase.map(function (i) { return i.TotalAmount; })),
+              Math.max.apply(null, rawSale.map(function (i) { return i.TotalAmount; })),
+              Math.max.apply(null, rawExpense.map(function (i) { return i.TotalAmount; }))
+          );
+
+          // Fallback if all values are 0
+          if (maxVal === 0) maxVal = 1000;
+
+          var plot = $.plot(
+              "#flotChart",
+              [
+                  {
+                      data: dashData4,
+                      label: "Purchases",
+                      color: "#bcc1f3",
+                      lines: { fillColor: "#bcc1f3" }
+                  },
+                  {
+                      data: dashData3,
+                      label: "Expenses",
+                      color: "#3f50f6",
+                      lines: { fillColor: "#3f50f6" }
+                  },
+                  {
+                      data: dashData2,
+                      label: "Sales",
+                      color: "#ffab2d",
+                      lines: { fillColor: "#ffab2d" }
+                  }
+              ],
               {
-                  data: dashData4,
-                  label: "Total POs",
-                  color: "#bcc1f3",
-                  lines: { fillColor: "#bcc1f3" }
-              },
-              {
-                  data: dashData3,
-                  label: "Approved POs",
-                  color: "#3f50f6",
-                  lines: { fillColor: "#3f50f6" }
-              },
-              {
-                  data: dashData2,
-                  label: "Pending POs",
-                  color: "#ffab2d",
-                  lines: { fillColor: "#ffab2d" }
+                  series: {
+                      shadowSize: 0,
+                      lines: { show: true, lineWidth: 2, fill: true }
+                  },
+                  grid: { borderWidth: 0, labelMargin: 8 },
+                  yaxis: {
+                      show: true,
+                      min: 0,
+                      max: maxVal + (maxVal * 0.1),
+                      ticks: 5
+                  },
+                  xaxis: {
+                      show: true,
+                      color: "#fff",
+                      tickColor: "#eee",
+                      ticks: xTicks
+                  }
               }
-          ],
-          {
-              series: {
-                  shadowSize: 0,
-                  lines: { show: true, lineWidth: 2, fill: true }
-              },
-              grid: { borderWidth: 0, labelMargin: 8 },
-              yaxis: {
-                  show: true,
-                  min: 0,
-                  max: 50000,    // <-- adjust to your max sales amount
-                  ticks: 5
-              },
-              xaxis: {
-                  show: true,
-                  color: "#fff",
-                  tickColor: "#eee",
-                  ticks: xTicks
-              }
-          }
-      );
-  
+          );
+      }
     });
   });
 })(jQuery);

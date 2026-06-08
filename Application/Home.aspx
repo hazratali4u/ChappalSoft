@@ -20,7 +20,7 @@
                         <div class="d-flex justify-content-between align-items-start">
                           <div class="color-card">
                             <p class="mb-0 color-card-head">Sales</p>
-                            <h2 class="text-white">1,50,678.<span class="h5">00</span>
+                            <h2 class="text-white"><h3 class="m-0 survey-value"><asp:Label ID="lblSale" runat="server" ForeColor="White"></asp:Label> </h3>
                             </h2>
                           </div>
                           <i class="card-icon-indicator mdi mdi-basket bg-inverse-icon-warning"></i>
@@ -35,7 +35,7 @@
                         <div class="d-flex justify-content-between align-items-start">
                           <div class="color-card">
                             <p class="mb-0 color-card-head">Purchase</p>
-                            <h2 class="text-white"> 5,300.<span class="h5">00</span>
+                            <h2 class="text-white"><h3 class="m-0 survey-value"><asp:Label ID="lblPurchase" runat="server" ForeColor="White"></asp:Label> </h3>
                             </h2>
                           </div>
                           <i class="card-icon-indicator mdi mdi-cube-outline bg-inverse-icon-danger"></i>
@@ -50,7 +50,7 @@
                         <div class="d-flex justify-content-between align-items-start">
                           <div class="color-card">
                             <p class="mb-0 color-card-head">Expenses</p>
-                            <h2 class="text-white"> 1,753.<span class="h5">00</span>
+                            <h2 class="text-white"><h3 class="m-0 survey-value"><asp:Label ID="lblExpense" runat="server" ForeColor="White"></asp:Label> </h3>
                             </h2>
                           </div>
                           <i class="card-icon-indicator mdi mdi-briefcase-outline bg-inverse-icon-primary"></i>
@@ -71,9 +71,9 @@
                             <p class="m-0 survey-head">Today Sales</p>
                             <div class="d-flex justify-content-between align-items-end flot-bar-wrapper">
                               <div>
-                                <h3 class="m-0 survey-value">5,300</h3>
+                                <h3 class="m-0 survey-value"><label id="lblTodaySale"></label></h3>
                               </div>
-                              <div id="earningChart" class="flot-chart" style="padding: 0px;"><canvas class="flot-base" width="80" height="63" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 64px; height: 51px;"></canvas><canvas class="flot-overlay" width="80" height="63" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 64px; height: 51px;"></canvas></div>
+                              <div id="saleChart" class="flot-chart" style="padding: 0px;"><canvas class="flot-base" width="80" height="63" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 64px; height: 51px;"></canvas><canvas class="flot-overlay" width="80" height="63" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 64px; height: 51px;"></canvas></div>
                             </div>
                           </div>
                         </div>
@@ -84,9 +84,9 @@
                             <p class="m-0 survey-head">Today Purchase</p>
                             <div class="d-flex justify-content-between align-items-end flot-bar-wrapper">
                               <div>
-                                <h3 class="m-0 survey-value">9,100</h3>
+                                <h3 class="m-0 survey-value"><label id="lblTodayPurchase"></label></h3>
                               </div>
-                              <div id="productChart" class="flot-chart" style="padding: 0px;"><canvas class="flot-base" width="80" height="63" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 64px; height: 51px;"></canvas><canvas class="flot-overlay" width="80" height="63" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 64px; height: 51px;"></canvas></div>
+                              <div id="purchaseChart" class="flot-chart" style="padding: 0px;"><canvas class="flot-base" width="80" height="63" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 64px; height: 51px;"></canvas><canvas class="flot-overlay" width="80" height="63" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 64px; height: 51px;"></canvas></div>
                             </div>
                           </div>
                         </div>
@@ -97,9 +97,9 @@
                             <p class="m-0 survey-head">Today Expenes</p>
                             <div class="d-flex justify-content-between align-items-end flot-bar-wrapper">
                               <div>
-                                <h3 class="m-0 survey-value">4,354</h3>
+                                <h3 class="m-0 survey-value"><label id="lblTodayExpense"></label></h3>
                               </div>
-                              <div id="orderChart" class="flot-chart" style="padding: 0px;"><canvas class="flot-base" width="80" height="63" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 64px; height: 51px;"></canvas><canvas class="flot-overlay" width="80" height="63" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 64px; height: 51px;"></canvas></div>
+                              <div id="expenseChart" class="flot-chart" style="padding: 0px;"><canvas class="flot-base" width="80" height="63" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 64px; height: 51px;"></canvas><canvas class="flot-overlay" width="80" height="63" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 64px; height: 51px;"></canvas></div>
                             </div>
                           </div>
                         </div>
@@ -112,8 +112,8 @@
                             <canvas class="flot-base" width="1095" height="345" style="width: 876.5px; height: 276px;"></canvas>
                           <canvas class="flot-overlay" width="1095" height="345" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 876.5px; height: 276px;"></canvas><div class="flot-svg" style="position: absolute; top: 0px; left: 0px; height: 100%; width: 100%; pointer-events: none;"><svg style="width: 100%; height: 100%;"><g class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; inset: 0px;"><text x="0.46249961853027344" y="271.19999980926514" class="flot-tick-label tickLabel" style="position: absolute; text-align: center;">2000</text><text x="741.6650312641" y="271.19999980926514" class="flot-tick-label tickLabel" style="position: absolute; text-align: center;">5500</text><text x="106.34857556789737" y="271.19999980926514" class="flot-tick-label tickLabel" style="position: absolute; text-align: center;">2500</text><text x="212.23465151726447" y="271.19999980926514" class="flot-tick-label tickLabel" style="position: absolute; text-align: center;">3000</text><text x="318.12072746663154" y="271.19999980926514" class="flot-tick-label tickLabel" style="position: absolute; text-align: center;">3500</text><text x="424.00680341599866" y="271.19999980926514" class="flot-tick-label tickLabel" style="position: absolute; text-align: center;">4000</text><text x="529.8928793653657" y="271.19999980926514" class="flot-tick-label tickLabel" style="position: absolute; text-align: center;">4500</text><text x="635.7789553147328" y="271.19999980926514" class="flot-tick-label tickLabel" style="position: absolute; text-align: center;">5000</text></g></svg></div></div>
                             <div class="custom-legend" style="margin-top:8px;">
-                                <span style="background:#bcc1f3; width:12px; height:12px; display:inline-block; margin-right:5px;"></span>
-                                <span style="color:#bcc1f3; font-size:12px;">Purchase</span>
+                                <span style="background:#ff3ca6; width:12px; height:12px; display:inline-block; margin-right:5px;"></span>
+                                <span style="color:#ff3ca6; font-size:12px;">Purchase</span>
                                 <span style="background:#3f50f6; width:12px; height:12px; display:inline-block; margin-left:15px; margin-right:5px;"></span>
                                 <span style="color:#3f50f6; font-size:12px;">Expenses</span>
                                 <span style="background:#ffab2d; width:12px; height:12px; display:inline-block; margin-left:15px; margin-right:5px;"></span>

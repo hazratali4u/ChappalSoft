@@ -48,6 +48,35 @@ public partial class Home : System.Web.UI.Page
             hf7DaysPurchase.Value = GetJson(dsData.Tables[0]);
             hf7DaysSale.Value = GetJson(dsData.Tables[1]);
             hf7DaysExpense.Value = GetJson(dsData.Tables[2]);
+            if (dsData.Tables[3].Rows.Count > 0)
+            {
+                decimal total = Convert.ToDecimal(dsData.Tables[3].Rows[0]["TotalSales"]);
+                lblSale.Text = total.ToString("N0");
+            }
+            else
+            {
+                lblSale.Text = "0";
+            }
+
+            if (dsData.Tables[4].Rows.Count > 0)
+            {
+                decimal total = Convert.ToDecimal(dsData.Tables[4].Rows[0]["TotalPurchase"]);
+                lblPurchase.Text = total.ToString("N0");
+            }
+            else
+            {
+                lblPurchase.Text = "0";
+            }
+
+            if (dsData.Tables[5].Rows.Count > 0)
+            {
+                decimal total = Convert.ToDecimal(dsData.Tables[5].Rows[0]["TotalExpense"]);
+                lblExpense.Text = total.ToString("N0");
+            }
+            else
+            {
+                lblExpense.Text = "0";
+            }
         }
     }
     public static string GetJson(DataTable dt)

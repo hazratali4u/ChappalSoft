@@ -117,7 +117,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 ltrlFiles.Text = "<script src='AjazLibrary/SaleCoat6.js'></script> <script src='AjazLibrary/moment-with-locales.js'></script>";
                 break;
             case "POSBarCode.aspx":
-                ltrlFiles.Text = "<script src='AjazLibrary/POSBarCode1.js'></script> <script src='AjazLibrary/moment-with-locales.js'></script>";
+                ltrlFiles.Text = "<script src='AjazLibrary/POSBarCode2.js'></script> <script src='AjazLibrary/moment-with-locales.js'></script>";
                 break;
             case "Shop.aspx":
                 ltrlFiles.Text = "<script src='AjazLibrary/Shop.js'></script>";

@@ -49,7 +49,8 @@
                                 <asp:TextBox ID="txtPurchaseNo" Width="50%" runat="server" class="form-control" placeholder="Purchase No"></asp:TextBox>
                             </div>
                             <div class="form-group">
-                                <asp:DropDownList ID="ddlCategory" runat="server" Width="50%" CssClass="form-control form-control-lg">
+                                <asp:DropDownList ID="ddlCategory" runat="server" Width="50%" CssClass="form-control form-control-lg"
+                                  AutoPostBack="true"  OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" >
                                 </asp:DropDownList>
                             </div>
                             <div class="form-group">

@@ -56,7 +56,7 @@ public partial class Default : System.Web.UI.Page
         }
         else
         {
-            cookie.Values["WorkingDate"] = System.DateTime.Now.AddHours(13).ToShortDateString();
+            cookie.Values["WorkingDate"] = System.DateTime.Now.AddHours(12).ToShortDateString();
         }
         cookie.Expires = DateTime.Now.AddHours(10);
         cookie.HttpOnly = true;

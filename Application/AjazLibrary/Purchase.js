@@ -21,25 +21,7 @@
     $("[id$='txtPrice']").off('change').on('change', function () {
         SetAmount();
         $("[id$='btnAdd']").focus();
-    });
-
-    $("[id$='ddlCategory']").off('change').on('change', function () {
-        var categoryid = $("[id$='ddlCategory']").val();
-        var lstProducts = $("[id$='hfItemIDs']").val();
-        lstProducts = eval(lstProducts);
-        var $itemDropdown = $("[id$='ddlItem']");
-        $itemDropdown.empty();
-        for (var i = 0, len = lstProducts.length; i < len; ++i) {
-            if (lstProducts[i].CategoryID == categoryid || categoryid == 0) {
-                $itemDropdown.append($('<option>', {
-                    value: lstProducts[i].ItemID,
-                    text: lstProducts[i].Name
-                }));
-            }
-        }
-    });
-
-
+    });  
 });
 function SetAmount()
 {

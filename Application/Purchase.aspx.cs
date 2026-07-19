@@ -52,7 +52,6 @@ public partial class Purchase : System.Web.UI.Page
         ddlItem.DataValueField = "ItemID";
         ddlItem.DataBind();
         Session.Add("dtItem", dtItem);
-
         hfItemIDs.Value = GetJson(dtItem);
     }
 
@@ -399,6 +398,7 @@ public partial class Purchase : System.Web.UI.Page
         btnSave.Enabled = true;
         btnCancel.Enabled = true;
         dvSize.Visible = false;
+        ddlCategory_SelectedIndexChanged(null, null);
     }
 
     protected void btnDoneSize_Click(object sender, EventArgs e)
@@ -426,6 +426,7 @@ public partial class Purchase : System.Web.UI.Page
             string script = "alert('" + safeMessage + "');";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", script, true);
         }
+        ddlCategory_SelectedIndexChanged(null, null);
     }
 
     private void AddSizeQty()
@@ -448,6 +449,18 @@ public partial class Purchase : System.Web.UI.Page
         }
         string jsonResult = JsonConvert.SerializeObject(sizeQtyList);
         hfSizeQtyJson.Value = jsonResult;
+    }
+
+    protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        ddlItem.Items.Clear();
+        int categoryId = Convert.ToInt32(ddlCategory.SelectedValue);
+        var dtItem = (DataTable)Session["dtItem"];
+        DataRow[] filteredRows = dtItem.Select("CategoryID = " + categoryId);
+        foreach (DataRow dr in filteredRows)
+        {
+            ddlItem.Items.Add(new ListItem(dr["Name"].ToString(), dr["ItemID"].ToString()));
+        }
     }
 }
 public class SizeQty

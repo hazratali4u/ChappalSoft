@@ -383,6 +383,7 @@ public partial class Purchase : System.Web.UI.Page
         btnCancel.Enabled = false;
         lblNameSize.InnerHtml= "Item: " + ddlItem.SelectedItem.Text;
         lblIColoeSize.InnerHtml = "Color: " + ddlColor.SelectedItem.Text;
+        Session.Add("ItemID", ddlItem.SelectedValue);
         LoadSize();
         dvSize.Visible = true;
     }
@@ -399,6 +400,7 @@ public partial class Purchase : System.Web.UI.Page
         btnCancel.Enabled = true;
         dvSize.Visible = false;
         ddlCategory_SelectedIndexChanged(null, null);
+        ddlItem.SelectedValue = Session["ItemID"].ToString();
     }
 
     protected void btnDoneSize_Click(object sender, EventArgs e)
@@ -427,6 +429,7 @@ public partial class Purchase : System.Web.UI.Page
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", script, true);
         }
         ddlCategory_SelectedIndexChanged(null, null);
+        ddlItem.SelectedValue = Session["ItemID"].ToString();
     }
 
     private void AddSizeQty()
@@ -456,10 +459,20 @@ public partial class Purchase : System.Web.UI.Page
         ddlItem.Items.Clear();
         int categoryId = Convert.ToInt32(ddlCategory.SelectedValue);
         var dtItem = (DataTable)Session["dtItem"];
-        DataRow[] filteredRows = dtItem.Select("CategoryID = " + categoryId);
-        foreach (DataRow dr in filteredRows)
+        if (categoryId == 0)
         {
-            ddlItem.Items.Add(new ListItem(dr["Name"].ToString(), dr["ItemID"].ToString()));
+            foreach (DataRow dr in dtItem.Rows)
+            {
+                ddlItem.Items.Add(new ListItem(dr["Name"].ToString(), dr["ItemID"].ToString()));
+            }
+        }
+        else
+        {
+            DataRow[] filteredRows = dtItem.Select("CategoryID = " + categoryId);
+            foreach (DataRow dr in filteredRows)
+            {
+                ddlItem.Items.Add(new ListItem(dr["Name"].ToString(), dr["ItemID"].ToString()));
+            }
         }
     }
 }

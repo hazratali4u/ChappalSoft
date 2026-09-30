@@ -100,15 +100,15 @@ namespace ChappalPrintService
 
                     }
                 }
-                DataTable dtSticker = GetPrintingStickers(1);
-                if(dtSticker.Rows.Count > 0)
-                {
-                    WriteLog(string.Format("Sticker No-{0}- Started Printing.", dtSticker.Rows[0]["StickerPrintingID"].ToString()), string.Empty);
-                    if (PrintSticker(dtSticker, PrinterNameSticker))
-                    {
+                //DataTable dtSticker = GetPrintingStickers(1);
+                //if(dtSticker.Rows.Count > 0)
+                //{
+                //    WriteLog(string.Format("Sticker No-{0}- Started Printing.", dtSticker.Rows[0]["StickerPrintingID"].ToString()), string.Empty);
+                //    if (PrintSticker(dtSticker, PrinterNameSticker))
+                //    {
 
-                    }
-                }
+                //    }
+                //}
             }
             catch (Exception ex)
             {

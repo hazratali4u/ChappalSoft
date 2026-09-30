@@ -326,6 +326,8 @@ namespace ChappalPrintService {
             
             private global::System.Data.DataColumn columnTimeStamp;
             
+            private global::System.Data.DataColumn columnCustomer;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public dtInvoiceDataTable() {
@@ -409,6 +411,14 @@ namespace ChappalPrintService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CustomerColumn {
+                get {
+                    return this.columnCustomer;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -444,7 +454,7 @@ namespace ChappalPrintService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public dtInvoiceRow AdddtInvoiceRow(string ItemName, int Quantity, int Price, int Amount, int Discount, System.DateTime TimeStamp) {
+            public dtInvoiceRow AdddtInvoiceRow(string ItemName, int Quantity, int Price, int Amount, int Discount, System.DateTime TimeStamp, string Customer) {
                 dtInvoiceRow rowdtInvoiceRow = ((dtInvoiceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ItemName,
@@ -452,7 +462,8 @@ namespace ChappalPrintService {
                         Price,
                         Amount,
                         Discount,
-                        TimeStamp};
+                        TimeStamp,
+                        Customer};
                 rowdtInvoiceRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtInvoiceRow);
                 return rowdtInvoiceRow;
@@ -481,6 +492,7 @@ namespace ChappalPrintService {
                 this.columnAmount = base.Columns["Amount"];
                 this.columnDiscount = base.Columns["Discount"];
                 this.columnTimeStamp = base.Columns["TimeStamp"];
+                this.columnCustomer = base.Columns["Customer"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -498,6 +510,8 @@ namespace ChappalPrintService {
                 base.Columns.Add(this.columnDiscount);
                 this.columnTimeStamp = new global::System.Data.DataColumn("TimeStamp", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTimeStamp);
+                this.columnCustomer = new global::System.Data.DataColumn("Customer", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCustomer);
                 this.columnItemName.MaxLength = 100;
             }
             
@@ -1044,6 +1058,22 @@ namespace ChappalPrintService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Customer {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtInvoice.CustomerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Customer\' in table \'dtInvoice\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtInvoice.CustomerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsItemNameNull() {
                 return this.IsNull(this.tabledtInvoice.ItemNameColumn);
             }
@@ -1112,6 +1142,18 @@ namespace ChappalPrintService {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTimeStampNull() {
                 this[this.tabledtInvoice.TimeStampColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCustomerNull() {
+                return this.IsNull(this.tabledtInvoice.CustomerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCustomerNull() {
+                this[this.tabledtInvoice.CustomerColumn] = global::System.Convert.DBNull;
             }
         }
         
